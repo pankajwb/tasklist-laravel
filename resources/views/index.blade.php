@@ -19,14 +19,18 @@
     </div>
     <div>
         @forelse ($tasks as $task )
-        <div>
+        <li>
             <a href="{{ route('tasks.show',['task' => $task->id]) }}">{{ $task->title }}</a>
-        </div>
+        </li>
         @empty
             <div>No Tasks</div>
         @endforelse
 
-
+        @if($tasks->count())
+            <nav>
+                {{ $tasks->links() }}
+            </nav>
+        @endif
     </div>
 @endsection
 
