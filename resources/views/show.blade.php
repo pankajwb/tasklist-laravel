@@ -26,7 +26,7 @@
     </div>
     <div>
         <a href="{{ route('tasks.edit',['task' => $task->id]) }}">Edit Task</a>
-         | <a href="{{ route('tasks.index') }}">Go to list</a>
+        <a href="{{ route('tasks.index') }}">Go to list</a>
     </div>
     @endif
 @endsection

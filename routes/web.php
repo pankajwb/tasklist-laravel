@@ -40,6 +40,23 @@ Route::post('/tasks',function(TaskRequest $request) {
         ->with('success', 'Task Created!');
 })->name('tasks.store');
 
+//DELETE ROUTE
+Route::delete('/tasks/{task}', function(Task $task){
+    $task->delete();
+
+    return redirect()->route('tasks.index')
+        ->with('success','Task Deleted!');
+})->name('tasks.destroy');
+
+//TOGGLE ROUTE
+Route::put('/tasks/{task}/toggle-complete',function(Task $task){
+    $task->toggleComplete();
+
+    return redirect()->back()
+    ->with('success', 'Task Toggle completed!');
+})->name('tasks.toggle');
+
+
 Route::put('/tasks/{task}',function(Task $task, TaskRequest $request) {
     $data = $request->validated();
 
@@ -50,34 +67,6 @@ Route::put('/tasks/{task}',function(Task $task, TaskRequest $request) {
         ->with('success', 'Task has been Updated!');
 })->name('tasks.update');
 
-//DELETE ROUTE
-Route::delete('/tasks/{task}', function(Task $task){
-    $task->delete();
-
-    return redirect()->route('tasks.index')
-        ->with('success','Task Deleted!');
-})->name('tasks.destroy');
-
-//TOGGLE ROUTE
-Route::put('/tasks/{task}',function(Task $task){
-    $task->toggleComplete();
-
-    return redirect()->back()
-    ->with('success', 'Task Toggle completed!');
-})->name('tasks.toggle');
-
-// Route::get('/hello',function(){
-//     return 'hello';
-// })->name('hello');
-
-// Route::get('hallo',function(){
-//     return redirect()->route('hello');
-// });
-
-// Route::get('/greet/{name}', function($name){
-//     return 'Hello '.$name.'!';
-// });
-
-// Route::fallback(function(){
-//     return 'catch all urls 404';
-// });
+Route::fallback(function () {
+    return 'Still got somewhere!';
+});
