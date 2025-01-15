@@ -18,6 +18,7 @@
             font-size: 0.8rem;
             padding: 5px;
         }
+
     </style>
 @endsection
 
